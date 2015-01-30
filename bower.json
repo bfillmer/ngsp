@@ -1,0 +1,20 @@
+{
+  "name": "ngsp",
+  "version": "0.0.0",
+  "authors": [
+    "Bryan Fillmer <bryan@303software.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.3.11",
+    "angular-ui-router": "~0.2.13"
+  }
+}
