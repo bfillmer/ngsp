@@ -7,9 +7,12 @@
 // Any additional Bower install dependencies must be added
 // here to be included.
 var js = [
-  'ng-app/**/*.js',
   'bower-packages/angular/angular.js',
-  'bower-packages/angular-ui-router/release/angular-ui-router.js'
+  'bower-packages/angular-ui-router/release/angular-ui-router.js',
+  'bower-packages/ng-lodash/build/ng-lodash.js',
+  'ng-app/app.js',
+  'ng-app/routes.js',
+  'ng-app/modules/**/*.js'
   ];
 
 // Grab our packages.
