@@ -16,6 +16,8 @@
   "devDependencies": {
     "angular": "~1.3.11",
     "angular-ui-router": "~0.2.13",
-    "ng-lodash": "~0.1.0"
+    "ng-lodash": "~0.1.0",
+    "angulartics": "~0.17.2",
+    "bootswatch": "~3.3.4+1"
   }
 }

@@ -7,13 +7,19 @@
 
   function ApplicationConfig() {}
 
-  function ApplicationController() {
+  function ApplicationController($rootScope) {
 
     var ac = this;
 
-    ac.test = 'Application Controller Available';
-
-    console.log(ac.test);
+    // Some functionality for an app happens at the application level but is dependent
+    // on the current modular state, therefore we check for state change and do what we
+    // need from there.
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      // Set page title based on pageTitle property of a state, if it exists.
+      if (toState.hasOwnProperty('pageTitle')) {
+        ac.pageTitle = toState.pageTitle;
+      }
+    });
   
   }
 
@@ -25,6 +31,6 @@
 
   ])
   .config(ApplicationConfig)
-  .controller('ApplicationController', ApplicationController);
+  .controller('ApplicationController', ['$rootScope', ApplicationController]);
 
 })();

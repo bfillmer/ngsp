@@ -17,6 +17,7 @@
     .state('todo', {
       url: '/todo',
       resolve: {},
+      pageTitle: 'Todo List',
       views: {
         'primary': {
           templateUrl: 'modules/todo/tpl/primary.tpl.html',
