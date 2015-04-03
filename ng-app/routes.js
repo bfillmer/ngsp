@@ -32,6 +32,7 @@
   }
 
   angular.module('ngsp')
-  .config(['$urlRouterProvider', '$stateProvider', RouteConfig]);
+  .config(['$urlRouterProvider', '$stateProvider', RouteConfig])
+  ;
 
 })();

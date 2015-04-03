@@ -31,6 +31,7 @@
 
   ])
   .config(ApplicationConfig)
-  .controller('ApplicationController', ['$rootScope', ApplicationController]);
+  .controller('ApplicationController', ['$rootScope', ApplicationController])
+  ;
 
 })();

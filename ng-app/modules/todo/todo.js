@@ -9,13 +9,24 @@
 
     var td = this;
 
-    td.test = 'TodoController Available';
-
-    console.log(td.test);
+    td.addItem = function () {
+      console.log(td.newTodoItem);
+    };
 
   }
 
+  function addTodoItemDirective() {
+    return {
+      restrict: 'E',
+      templateUrl: 'modules/todo/tpl/add-item.tpl.html',
+      controller: 'TodoController',
+      controllerAs: 'td'
+    };
+  }
+
   angular.module('ngsp')
-  .controller('TodoController', TodoController);
+  .controller('TodoController', TodoController)
+  .directive('addTodo', addTodoItemDirective)
+  ;
 
 })();
