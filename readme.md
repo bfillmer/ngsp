@@ -27,3 +27,7 @@ More elaboration on application structure and best practices to come in the next
 ### Note on Bower Dependencies
 
 Any packages installed with `bower` will need to have their files to include added to various config arrays in `gulpfile.js`.
+
+### Hello Slack
+
+Testing GitHub integration with Slack.
