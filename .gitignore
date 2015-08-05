@@ -2,4 +2,4 @@
 # Package Manager Dependencies
 node_modules
 bower-packages
-ng-dev
+dist

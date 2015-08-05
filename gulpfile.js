@@ -10,18 +10,18 @@ var js = [
   'bower-packages/angular/angular.js',
   'bower-packages/angular-ui-router/release/angular-ui-router.js',
   'bower-packages/ng-lodash/build/ng-lodash.js',
-  'ng-app/app.js',
-  'ng-app/routes.js',
-  'ng-app/modules/**/*.js'
+  'app/app.js',
+  'app/routes.js',
+  'app/modules/**/*.js'
   ];
 
 // Grab our packages.
 var gulp        = require('gulp'),
     jshint      = require('gulp-jshint'),
-    less        = require('gulp-less')
-    connect     = require('gulp-connect')
-    concat      = require('gulp-concat')
-    del         = require('del')
+    sass        = require('gulp-sass'),
+    connect     = require('gulp-connect'),
+    concat      = require('gulp-concat'),
+    del         = require('del'),
     runSequence = require('run-sequence')
     ;
 
@@ -29,11 +29,11 @@ var gulp        = require('gulp'),
 /* TASKS (Partials) */
 
 
-// Configure the less task.
-gulp.task('less', function () {
-  return gulp.src('ng-app/less/**/*.less')
-    .pipe(less())
-    .pipe(gulp.dest('./ng-dev/css'))
+// Configure the sass task.
+gulp.task('sass', function () {
+  return gulp.src('app/scss/app.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./dist/css'))
     .pipe(connect.reload());
 });
 
@@ -42,22 +42,22 @@ gulp.task('less', function () {
 gulp.task('js-concat', function () {
   return gulp.src(js)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('ng-dev/js'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(connect.reload());
 });
 
 
 // Configure copying html files over.
 gulp.task('copy-html', function() {
-   return gulp.src('ng-app/**/*.html')
-   .pipe(gulp.dest('ng-dev/'))
+   return gulp.src('app/**/*.html')
+   .pipe(gulp.dest('dist/'))
    .pipe(connect.reload());
 });
 
 
 // Configure the jshint task.
 gulp.task('jshint', function () {
-  return gulp.src('ng-app/**/*.js')
+  return gulp.src('app/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
@@ -65,7 +65,7 @@ gulp.task('jshint', function () {
 
 // Configure the clean task for removing files/folders.
 gulp.task('clean', function (cb) {
-  return del('ng-dev/**', cb);
+  return del('dist/**', cb);
 });
 
 
@@ -73,7 +73,7 @@ gulp.task('clean', function (cb) {
 gulp.task('connect', function() {
   connect.server({
     port: 3000,
-    root: 'ng-dev',
+    root: 'dist',
     livereload: true
   });
 });
@@ -92,20 +92,20 @@ gulp.task('dev', ['watch', 'connect']);
 
 // Configure which files to watch and what tasks to use on file changes.
 gulp.task('watch', function () {
-  gulp.watch('ng-app/**/*.js', ['jshint', 'js-concat']);
-  gulp.watch('ng-app/less/**/*.less', ['less']);
-  gulp.watch('ng-app/**/*.html', ['copy-html']);
+  gulp.watch('app/**/*.js', ['jshint', 'js-concat']);
+  gulp.watch('app/scss/**/*.scss', ['sass']);
+  gulp.watch('app/**/*.html', ['copy-html']);
 });
 
 
-// Configure primary build task for generating full ng-dev/ files.
+// Configure primary build task for generating full dist/ files.
 // Leverages runSequence until Gulp 4. Any tasks in an array are
 // performed in parallel.
 gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'jshint',
-    ['js-concat', 'less'],
+    ['js-concat', 'sass'],
     'copy-html',
     cb
     );

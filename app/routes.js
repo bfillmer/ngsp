@@ -8,21 +8,21 @@
   function RouteConfig($urlRouterProvider, $stateProvider) {
 
     // Default application route.
-    $urlRouterProvider.otherwise('todo');
+    $urlRouterProvider.otherwise('map');
 
     $stateProvider
     
-    /* TODO MODULE STATES */
+    /* MAP MODULE STATES */
 
-    .state('todo', {
-      url: '/todo',
+    .state('map', {
+      url: '/map',
       resolve: {},
-      pageTitle: 'Todo List',
+      pageTitle: 'Highmaps Test',
       views: {
         'primary': {
-          templateUrl: 'modules/todo/tpl/primary.tpl.html',
-          controller: 'TodoController',
-          controllerAs: 'td'
+          templateUrl: 'modules/map/tpl/primary.tpl.html',
+          controller: 'MapController',
+          controllerAs: 'mp'
         }
       }
     })

@@ -1,8 +1,8 @@
 {
   "name": "ngsp",
-  "version": "0.0.0",
+  "version": "0.5.1",
   "authors": [
-    "Bryan Fillmer <bryan@303software.com>"
+    "Bryan Fillmer <bryan.fillmer@effectiveui.com>"
   ],
   "license": "MIT",
   "private": true,
@@ -16,8 +16,6 @@
   "devDependencies": {
     "angular": "~1.3.11",
     "angular-ui-router": "~0.2.13",
-    "ng-lodash": "~0.1.0",
-    "angulartics": "~0.17.2",
-    "bootswatch": "~3.3.4+1"
+    "ng-lodash": "~0.1.0"
   }
 }
