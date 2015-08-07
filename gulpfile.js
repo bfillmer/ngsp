@@ -99,10 +99,6 @@ gulp.task('connect', function() {
 gulp.task('default', []);
 
 
-// Dev task runs watch and boots up our test server.
-gulp.task('dev', ['watch', 'connect']);
-
-
 // Configure which files to watch and what tasks to use on file changes.
 gulp.task('watch', function () {
   gulp.watch('app/**/*.js', ['jshint', 'js-concat']);
@@ -114,7 +110,7 @@ gulp.task('watch', function () {
 // Configure primary build task for generating full dev/ files.
 // Leverages runSequence until Gulp 4. Any tasks in an array are
 // performed in parallel.
-gulp.task('build', function (cb) {
+gulp.task('dev-build', function (cb) {
   runSequence(
     'clean',
     'jshint',
@@ -124,3 +120,7 @@ gulp.task('build', function (cb) {
     cb
     );
 });
+
+
+// Dev task runs watch and boots up our test server.
+gulp.task('dev-watch', ['watch', 'connect']);
