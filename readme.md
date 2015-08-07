@@ -20,7 +20,7 @@ Navigate to `http://localhost:3000/` to start developing.
 
 ### Basic File Structure
 
-The application will be served from the `dist/` directory, which is updated on the fly by `gulp dev`. All application development occurs within `app/`.
+The application will be served from the `dev/` directory, which is updated on the fly by `gulp dev`. All application development occurs within `app/`.
 
 More elaboration on application structure and best practices to come in the next update.
 

@@ -7,12 +7,18 @@
 // Any additional Bower install dependencies must be added
 // here to be included.
 var js = [
+  // General purpose modules.
   'bower-packages/angular/angular.js',
   'bower-packages/angular-ui-router/release/angular-ui-router.js',
   'bower-packages/ng-lodash/build/ng-lodash.js',
+  
+  // Our app Javascript.
   'app/app.js',
   'app/routes.js',
-  'app/modules/**/*.js'
+  'app/modules/**/*.js',
+
+  // Ignore Tests
+  '!app/modules/**/*.test.js'
   ];
 
 // Grab our packages.
@@ -33,7 +39,7 @@ var gulp        = require('gulp'),
 gulp.task('sass', function () {
   return gulp.src('app/scss/app.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./dev/css'))
     .pipe(connect.reload());
 });
 
@@ -42,7 +48,7 @@ gulp.task('sass', function () {
 gulp.task('js-concat', function () {
   return gulp.src(js)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('dev/js'))
     .pipe(connect.reload());
 });
 
@@ -50,8 +56,15 @@ gulp.task('js-concat', function () {
 // Configure copying html files over.
 gulp.task('copy-html', function() {
    return gulp.src('app/**/*.html')
-   .pipe(gulp.dest('dist/'))
+   .pipe(gulp.dest('dev/'))
    .pipe(connect.reload());
+});
+
+
+// Configure copying static files over.
+gulp.task('copy-static', function() {
+   return gulp.src('app/static/*.*')
+   .pipe(gulp.dest('dev/static'));
 });
 
 
@@ -65,7 +78,7 @@ gulp.task('jshint', function () {
 
 // Configure the clean task for removing files/folders.
 gulp.task('clean', function (cb) {
-  return del('dist/**', cb);
+  return del('dev/**', cb);
 });
 
 
@@ -73,7 +86,7 @@ gulp.task('clean', function (cb) {
 gulp.task('connect', function() {
   connect.server({
     port: 3000,
-    root: 'dist',
+    root: 'dev',
     livereload: true
   });
 });
@@ -98,7 +111,7 @@ gulp.task('watch', function () {
 });
 
 
-// Configure primary build task for generating full dist/ files.
+// Configure primary build task for generating full dev/ files.
 // Leverages runSequence until Gulp 4. Any tasks in an array are
 // performed in parallel.
 gulp.task('build', function (cb) {
@@ -106,6 +119,7 @@ gulp.task('build', function (cb) {
     'clean',
     'jshint',
     ['js-concat', 'sass'],
+    'copy-static',
     'copy-html',
     cb
     );

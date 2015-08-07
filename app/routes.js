@@ -8,21 +8,21 @@
   function RouteConfig($urlRouterProvider, $stateProvider) {
 
     // Default application route.
-    $urlRouterProvider.otherwise('map');
+    $urlRouterProvider.otherwise('test');
 
     $stateProvider
     
-    /* MAP MODULE STATES */
+    /* TEST MODULE STATES */
 
-    .state('map', {
-      url: '/map',
+    .state('test', {
+      url: '/test',
       resolve: {},
-      pageTitle: 'Highmaps Test',
+      pageTitle: 'Test Module',
       views: {
         'primary': {
-          templateUrl: 'modules/map/tpl/primary.tpl.html',
-          controller: 'MapController',
-          controllerAs: 'mp'
+          templateUrl: 'modules/test/tpl/primary.tpl.html',
+          controller: 'TestController',
+          controllerAs: 'test'
         }
       }
     })
